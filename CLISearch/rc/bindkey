@@ -1,0 +1,30 @@
+#!/bin/bash
+
+function getkey(){
+DIALOG=${DIALOG=dialog}
+tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
+trap "rm -f $tempfile" 0 1 2 5 15
+
+# DIALOG GOES BELOW
+
+$DIALOG --clear --no-tags --title "Select Modifier Key" --menu "\nSelect the modifier key you want to use for this hotkey sequnce:\n" 0 0 0 
+	"\C-" "1 - CTRL" \
+	"\e" "2 - ALT" \
+	"" "3 - No Modifier Key" 2> $tempfile;
+
+retval=$?
+case $retval in
+0)
+	bindkey="$bindkey`cat $tempfile`"
+	echo $bindkey
+	secondkey
+	;;
+1)
+	echo "Cancel pressed."
+	;;
+255)
+	echo "ESC pressed."
+	;;
+esac
+unset retval
+}

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo -e "\e[00m"
+#clear						# Clears screen
+echo " "					# Blank line
+echo -e "[01;34;40mG[01;31;40mo[33;40mo[34;40mg[32;40ml[31;40me [01;37mSearch "
+read -p ': [00m' -r GOOGLESEARCH
+echo -e "\e[00m"
+w3m -v www.google.ca/search?q="$GOOGLESEARCH"
+unset GOOGLESEARCH
+echo -e "\e[00m"
+clear
+echo ' '
+echo 'If you found this useful, please spread the word.. '
+echo -e "\t........... or not. It's up to you."
+echo
+echo 'Thanks for the support regardless. But seriously, if you liked this script and'
+echo 'found this useful, you can find more scripts like this from the mind of the same'
+echo 'lazy "Geek" at :'
+echo
+#echo "Type 'google-toggle' to toggle/cycle through the Google banners"
+echo " "
+
+
+

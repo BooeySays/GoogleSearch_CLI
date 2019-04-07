@@ -1,0 +1,147 @@
+#!/bin/bash
+
+DIALOG=${DIALOG=dialog}
+tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
+trap "rm -f $tempfile" 0 1 2 5 15
+
+bindkey="bind '\""
+## FUNCTION TO ADD KEY
+function addkeyhelp(){
+	$DIALOG --clear --colors --backtitle 'BooeySays' --msgbox "Note:\n
+A multi keyed hotkey like (double tap \Zb\Zb\Z1[\Znk\Zb\Zb\Z1]\Zn while holding down \Zb\Zb\Z1[\ZnCTRL\Zb\Z1\Zb]\Zn\ZB) is the same as:\n
+\n
+		\Zb\Z1[\ZnCTRL\Zb\Z1]\Zn+\Zb\Z1[\Znk\Zb\Z1]\Zn, \Zb\Z1[\ZnCTRL\Zb\Z1]\Zn+\Zb\Z1[\Znk\Zb\Z1]\Zn\n
+\n
+You will need to add another sequence and set it to use the same modifier key. Otherwise, the hot-key will be:\n
+\n
+		\Zb\Z1[\ZnCTRL\Zb\Z1]\Zn+\Zb\Z1[\Znk\Zb\Z1]\Zn, \Zb\Z1[\Znk\Zb\Z1]\Zn (\Zb\Z1[\Znk\Zb\Z1]\Zn WITHOUT the modifier key the second time)\n
+\n" 0 0
+addkey
+}
+
+function addkey(){
+	clear
+	dialog --clear --help-button --defaultno --colors --backtitle 'DX2 Digital Solutions 2019' --stdout --title 'Add another sequence?' --yesno "\n\nDo you want to add another key sequence ?\n
+\n	
+	\ZiYour current hotkey is \Zb\Z1[\Zn$mod1\Zb\Z1]\Zn+\Zb\Zb\Z1[\Zn$key4mod\Zb\Zb\Z1]\Zn.\n
+	\n" 0 0
+
+retval=$?
+case $retval in
+0)
+	bindkey="$bindkey`cat $tempfile`"
+	echo $bindkey
+	secondkey
+	;;
+1)
+	finalizekey
+	;;
+2)
+	addkeyhelp
+	;;
+255)
+	echo "ESC pressed."
+	;;
+esac
+unset retval
+#		getkey
+#		;;
+#	*)
+#		finalizekey
+#		;;
+#	esac
+#	unset addkeyyn
+}
+## FUNCTION TO GET KEYS
+function getkey(){
+DIALOG=${DIALOG=dialog}
+tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
+trap "rm -f $tempfile" 0 1 2 5 15
+
+# DIALOG GOES BELOW
+
+$DIALOG --clear --no-tags --title "Select Modifier Key" --menu "\nSelect the modifier key you want to use for this hotkey sequnce:\n" 0 0 0 \
+	"\C-" "1 - CTRL" \
+	"\e" "2 - ALT" \
+	"" "3 - No Modifier Key" 2> $tempfile;
+
+retval=$?
+case $retval in
+0)
+	bindkey="$bindkey`cat $tempfile`"
+	echo $bindkey
+	secondkey
+	;;
+1)
+	echo "Cancel pressed."
+	;;
+255)
+	echo "ESC pressed."
+	;;
+esac
+unset retval
+}
+#function getkey(){
+#	clear
+#	echo """
+#Which modifier key do you want to use for this hotkey?
+#
+#	1)	[CTRL]
+#	2)	[ALT]
+#	3)	None
+#
+#"""
+#	read -p ': ' -n 1 -r modkeyselect
+#	case $modkeyselect in
+#	1)
+#		bindkey="$bindkey\\C-"
+#		mod1='CTRL'
+#		;;
+#	2)
+#		bindkey="$bindkey\\e"
+#		mod1='ALT'
+#		;;
+#	3)
+#		mod1=''
+#		;;
+#	*)
+#		echo ERROR
+#		;;
+#	esac
+#	unset modkeyselect
+#	clear
+#	secondkey
+#	
+#}
+
+## SECOND KEY
+function secondkey(){
+	key4mod=$(dialog --clear --colors --backtitle 'DX2 Digital Solutions 2019' --stdout --title 'Hotkey setup' --inputbox "\n\nEnter the key you want to use with the modifier: " 0 0)
+	bindkey="$bindkey$key4mod"
+	addkey
+}
+
+## FUNCTION TO FINALIZE KEYS
+function finalizekey(){
+	bindkey="$bindkey\":\"google\\n\"'"
+	echo """#!/bin/bash
+
+$bindkey""" > $CLISearch/rc/hotkey.sh
+}
+
+
+dialog --clear "$BACKTITLE" --msgbox 'ATTN: This script edits the hotkey used to call
+the Google search from the termnal.
+
+By default, the hotkey is set to [CTRL] + [k]
+(Just like it is for most browsers).
+
+If you want wish to continue using the key sequ-
+ence, you can exit this set up script by hitting
+[CTRl] + [c], or, hit any other key to continue.
+
+
+' 0 0
+
+clear
+getkey
