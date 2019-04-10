@@ -7,7 +7,7 @@ trap "rm -f $tempfile" 0 1 2 5 15
 
 # DIALOG GOES BELOW
 
-$DIALOG --clear --no-tags --title "Select Modifier Key" --menu "\nSelect the modifier key you want to use for this hotkey sequnce:\n" 0 0 0 
+$DIALOG --clear --no-tags --title "Select Modifier Key" --menu "\nSelect the modifier key you want to use for this hotkey sequnce:\n" 0 0 0 \
 	"\C-" "1 - CTRL" \
 	"\e" "2 - ALT" \
 	"" "3 - No Modifier Key" 2> $tempfile;
@@ -15,9 +15,14 @@ $DIALOG --clear --no-tags --title "Select Modifier Key" --menu "\nSelect the mod
 retval=$?
 case $retval in
 0)
-	bindkey="$bindkey`cat $tempfile`"
-	echo $bindkey
-	secondkey
+	bindkey="`cat $tempfile`"
+	seckey=$($DIALOG --stdout --clear --no-tags --title "Select Modifier Key" --inputbox "\nEnter the key you want to use with the modifier key:\n" 0 0)
+	bindkey="bind '\"$bindkey$seckey\":\"google\\n\"'"
+	echo """#!/bin/bash
+
+$bindkey""" > ./hotkey.sh
+	unset bindkey seckey
+#	secondkey
 	;;
 1)
 	echo "Cancel pressed."

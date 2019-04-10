@@ -1,3 +1,3 @@
 #!/bin/bash
 
-bind '"\C-k":"google\n"'
+bind '"\el":"google\n"'

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+### SCRIPT INFO ###
+#
+# DATE:	Tue Apr  9 21:00:18 PDT 2019
+# FILE:	google.auto
+# LANG:	BASH
+# DESC:	TBA
+# SNTX: 
+# XTRA: 
+#
+
+if [ "$COLUMNS" -ge 86 ]; then
+	. ./google.l
+elif [ "$COLUMNS" -lt 86 ] && [ "$COLUMNS" -gt 65 ]; then
+	. ./google.m
+elif [ "$COLUMNS" -lt 65 ] && [ "$COLUMNS" -gt 40 ]; then
+	. ./google.s
+elif [ "$COLUMNS" -lt 40 ]; then
+	. ./google.one
+fi
+
