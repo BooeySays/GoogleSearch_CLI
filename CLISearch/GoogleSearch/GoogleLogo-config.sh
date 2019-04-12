@@ -12,7 +12,7 @@ Please select a logo size to use:
 	l/L) Large
 	m/M) Medium
 	s/S) Small
-	x/X) Single Line
+	o/O) One Lined
 	a/A) Auto (Recommended)
 
 
@@ -28,13 +28,14 @@ Please select a logo size to use:
 	s)
 		echo -en s > google.logo
 		;;
-	x)
+	o)
 		echo -en one > google.logo
 		;;
 	a)
 		echo -en auto > google.logo
 		;;
 	L)
+		clear
 		echo -e "\n\n\033[04;37m                              PREVIEW - BEG                              \n \033[m"
 		echo -e """ 
 
@@ -62,6 +63,7 @@ Please select a logo size to use:
 		getsize
 		;;
 	M)
+		clear
 		echo -e "\033[0m"
 		echo -e '''
 
@@ -78,19 +80,22 @@ Please select a logo size to use:
 		getsize
 		;;
 	S)
+		clear
 		echo -e "\033[0m"
 		echo " "					# Blank line
 		echo -e "\n\n\e[m\t   \e[01;34;40mG\e[01;31;40mo\e[33;40mo\e[34;40mg\e[32;40ml\e[31;40me${cCLR}";echo ' ';printf "\e[m  \e[01;30;47m                          \e[00m \e[30;47m Search \e[00;00m\n\n\n "
 		read -p '[ Press any key to continue ]' -n 1
 		getsize
 		;;
-	X)
+	O)
+		clear
 		echo " "					# Blank line
 		echo -e "[01;34;40mG[01;31;40mo[33;40mo[34;40mg[32;40ml[31;40me [01;37mSearch \n:\n\n "
 		read -p '[ Press any key to continue ]' -n 1
 		getsize
 		;;
 	A)
+		clear
 		echo -e """Info:
 
 	Auto Logo Selection - All the logos are designed to
@@ -105,6 +110,9 @@ Please select a logo size to use:
 	that will work and will use that for the session."""
 		read -p '[ Press any key to continue ]' -n 1
 		getsize
+		;;
+	x|X)
+		exit 1
 		;;
 	*)
 		echo -e """Error - Wrong key selection

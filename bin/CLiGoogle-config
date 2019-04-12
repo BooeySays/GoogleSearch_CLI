@@ -13,9 +13,12 @@ echo -e """\033[01;04;31mCLISearch - Google setup\033[m
 read -p ': ' -n 1 -r googlesetupselect
 case $googlesetupselect in
 1)
-	. $CLISearch/GoogleSearch/GoogleLogo-config.sh
+	clear
+	. $BOOEYSFILES/CLISearch/GoogleSearch/GoogleLogo-config.sh
 	;;
 2)
-	. $CLISearch/google-hotkey-setup
+	clear
+	. $BOOEYSFILES/CLISearch/google-hotkey-setup
 	;;
 esac
+unset googlesetupselect

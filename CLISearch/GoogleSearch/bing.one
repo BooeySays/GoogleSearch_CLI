@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo -e "\e[00m"
+echo " "					# Blank line
+echo -e "[01;34;40mＢ[01;37;40mｉｎｇ [01;37mSearch "
+read -p ': [00m' -r GOOGLESEARCH
+echo -e "\e[00m"
+w3m -v www.google.ca/search?q="$GOOGLESEARCH"
+unset GOOGLESEARCH
+echo -e "\e[00m"
+
+
+

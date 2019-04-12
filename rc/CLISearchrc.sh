@@ -9,8 +9,8 @@ fi
 if [ -d "$CLISearch/rc" ]; then
 	for i in "$CLISearch/rc/*.sh"; do
 		. "$i"
-	fi
-unset i
+	done
+	unset i
 fi
 
 
