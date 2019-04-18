@@ -7,7 +7,7 @@ fi
 
 ## LOADS ALL THE RC FILES FOR CLISEARCH
 if [ -d "$CLISearch/rc" ]; then
-	for i in "$CLISearch/rc/*.sh"; do
+	for i in $CLISearch/rc/*.sh; do
 		. "$i"
 	done
 	unset i
