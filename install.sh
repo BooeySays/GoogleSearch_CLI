@@ -1,5 +1,11 @@
 #!/bin/bash
 
-cp -r ./CLISearch $BOOEYSFILES
-cp -r ./bin $BOOEYSAYS
-cp -r ./rc $BOOEYSAYS
+if [ $BOOEYSFILES ]; then
+	cp -r ./CLISearch $BOOEYSFILES
+fi
+if [ $BOOEYSAYS ]; then
+	cp -r ./bin $BOOEYSAYS
+fi
+if [ $BOOEYSAYS ]; then
+	cp -r ./rc $BOOEYSAYS
+fi
