@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function getkey(){
+#function getkey(){
 DIALOG=${DIALOG=dialog}
 tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
 trap "rm -f $tempfile" 0 1 2 5 15
@@ -20,7 +20,7 @@ case $retval in
 	bindkey="bind '\"$bindkey$seckey\":\". google\\n\"'"
 	echo """#!/bin/bash
 
-$bindkey""" > ./hotkey.sh
+$bindkey""" > $CLISearch/rc/hotkey.sh
 	unset bindkey seckey
 #	secondkey
 	;;
@@ -32,4 +32,4 @@ $bindkey""" > ./hotkey.sh
 	;;
 esac
 unset retval
-}
+#}

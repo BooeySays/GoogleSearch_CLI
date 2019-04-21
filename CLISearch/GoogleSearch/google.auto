@@ -11,12 +11,12 @@
 #
 
 if [ "$COLUMNS" -ge 86 ]; then
-	. ./google.l
+	. $CLISearch/GoogleSearch/google.l
 elif [ "$COLUMNS" -lt 86 ] && [ "$COLUMNS" -gt 65 ]; then
-	. ./google.m
+	. $CLISearch/GoogleSearch/google.m
 elif [ "$COLUMNS" -lt 65 ] && [ "$COLUMNS" -gt 40 ]; then
-	. ./google.s
+	. $CLISearch/GoogleSearch/google.s
 elif [ "$COLUMNS" -lt 40 ]; then
-	. ./google.one
+	. $CLISearch/GoogleSearch/google.one
 fi
 
