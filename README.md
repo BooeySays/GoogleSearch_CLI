@@ -3,9 +3,21 @@
 Update - April 21st 2019 
 v1.4 (First release) 
 
-DESCRIPTION:
+**DESCRIPTION** :
 Perform a Google search from your Terminal's command line. 
 ![Google screen ](https://i.imgur.com/TetZa3k_d.jpg?maxwidth=640&shape=thumb&fidelity=medium)
+
+**HOW TO INSTALL** :
+After cloning repo, run
+```
+. install.sh
+```
+from the repo's directory. 
+
+**HOW TO USE** :
+1. Reload your terminal after installing 
+2. Call the script by hitting **[CTRL] + [K] ** 
+
 
 Version 1.0 - 2019-04-08
 
