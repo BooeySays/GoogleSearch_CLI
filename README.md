@@ -1,5 +1,12 @@
 # CLISearch
 
+Update - April 21st 2019 
+v1.4 (First release) 
+
+DESCRIPTION:
+Perform a Google search from your Terminal's command line. 
+![Google screen ](https://i.imgur.com/TetZa3k_d.jpg?maxwidth=640&shape=thumb&fidelity=medium)
+
 Version 1.0 - 2019-04-08
 
 I've been working on a CLI Google Search script for a while now, and
