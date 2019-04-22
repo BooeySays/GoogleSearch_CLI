@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# SETS UP HOTKEYS
+
 function getkey(){
 DIALOG=${DIALOG=dialog}
 tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
@@ -17,7 +19,7 @@ case $retval in
 0)
 	bindkey="`cat $tempfile`"
 	seckey=$($DIALOG --stdout --clear --no-tags --title "Select Modifier Key" --inputbox "\nEnter the key you want to use with the modifier key:\n" 0 0)
-	bindkey="bind '\"$bindkey$seckey\":\". google\\n\"'"
+	bindkey="bind '\"$bindkey$seckey\":\"Google.com\\n\"'"
 	echo """#!/bin/bash
 
 $bindkey""" > ./hotkey.sh
