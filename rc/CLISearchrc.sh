@@ -13,5 +13,5 @@ if [ -d "$CLISearch/rc" ]; then
 	unset i
 fi
 
-
+alias Google.com='. google'
 
