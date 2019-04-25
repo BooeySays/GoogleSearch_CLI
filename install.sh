@@ -31,7 +31,7 @@ if ! hash w3m 2>/dev/null/; then
 	if hash pkg 2>/dev/null/; then
 		pkg update -y && pkg install w3m -y
 	elif hash apt 2>/dev/null/; then
-		apt update -y && apt install w3m -y
+		sudo apt update -y && sudo apt install w3m -y
 	fi
 fi
 
